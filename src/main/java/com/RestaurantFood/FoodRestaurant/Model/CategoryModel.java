@@ -1,35 +1,36 @@
 package com.RestaurantFood.FoodRestaurant.Model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.*;
+import com.google.cloud.firestore.annotation.DocumentId;
+import com.google.cloud.spring.data.firestore.Document;
+//import jakarta.persistence.*;
 
 import java.util.List;
 
-@Entity
+@Document
 public class CategoryModel {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @DocumentId
+    private String id;
     private String name;
 
-    @OneToMany(mappedBy="categories")
-    @JsonIgnore
-    private List<ItemModel> items;
+//    @OneToMany(mappedBy="categories")
+//    @JsonIgnore
+    //private List<ItemModel> items;
 
     public CategoryModel() {
     }
 
-    public CategoryModel(int id, String name, List<ItemModel> items) {
+    public CategoryModel(String id, String name) {
         this.id = id;
         this.name = name;
-        this.items = items;
+        //this.items = items;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -41,11 +42,11 @@ public class CategoryModel {
         this.name = name;
     }
 
-    public List<ItemModel> getItems() {
-        return items;
-    }
-
-    public void setItems(List<ItemModel> items) {
-        this.items = items;
-    }
+//    public List<ItemModel> getItems() {
+//        return items;
+//    }
+//
+//    public void setItems(List<ItemModel> items) {
+//        this.items = items;
+//    }
 }

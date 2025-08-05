@@ -9,6 +9,8 @@ import com.RestaurantFood.FoodRestaurant.Repository.ItemRepo;
 import com.RestaurantFood.FoodRestaurant.Repository.OrderRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 import java.util.List;
 
@@ -35,22 +37,24 @@ public class FoodOrderService {
         cm.setEmail(cod.getCustModel().getEmail());
         cm.setPhoneNumber(cod.getCustModel().getPhoneNumber());
 
-        customer.save(cm);
+        customer.save(cm).block();
 
         OrderModel om = new OrderModel();
         om.setName(cod.getCustModel().getName());
         om.setPhoneNumber(cod.getCustModel().getPhoneNumber());
         om.setPriority(cod.getOrdModel().getPriority());
         om.setItemNames(cod.getOrdModel().getItemNames());
-        List<String> test = cod.getOrdModel().getItemNames();
-        System.out.println(test);
+       // List<String> test = cod.getOrdModel().getItemNames();
+        //System.out.println(test);
 
         om.setPriority(cod.getOrdModel().getPriority());
         for(String str : cod.getOrdModel().getItemNames() ){
-            System.out.println(str);
-            ItemModel imr = item.findByName(str).orElseThrow(()-> new RuntimeException("Item Not found"));
-            totalPrice+=imr.getPrice();
+            //System.out.println(str);
+            ItemModel imr = item.findByName(str).switchIfEmpty(Mono.error(new RuntimeException("Item not found"))).block();
+            //totalPrice+=imr.getPrice();
         }
+
+
 
 
 
@@ -59,7 +63,7 @@ public class FoodOrderService {
 
 
 
-        order.save(om);
+        order.save(om).block();
 
         return "success";
     }

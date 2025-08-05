@@ -1,31 +1,29 @@
 package com.RestaurantFood.FoodRestaurant.Model;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+import com.google.cloud.firestore.annotation.DocumentId;
+import com.google.cloud.spring.data.firestore.Document;
 
-@Entity
+
+
+@Document
 public class CustomerModel {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @DocumentId
+    private String id;
 
     private String name;
-    @Email(message="Invalid email")
-    @NotBlank(message = "Email mandatory")
+
     private String email;
 
-    @NotBlank(message = "Phone num mandatory")
+
     private String phoneNumber;
 
-    @NotBlank(message="Address is mandatory")
+
     private String address;
 
     public CustomerModel() {
     }
 
-    public CustomerModel(int id, String name, String email, String phoneNumber, String address) {
+    public CustomerModel(String id, String name, String email, String phoneNumber, String address) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -33,11 +31,11 @@ public class CustomerModel {
         this.address = address;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

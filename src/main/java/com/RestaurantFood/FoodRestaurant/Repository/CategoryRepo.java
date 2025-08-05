@@ -1,12 +1,14 @@
 package com.RestaurantFood.FoodRestaurant.Repository;
 
 import com.RestaurantFood.FoodRestaurant.Model.CategoryModel;
-import org.springframework.data.jpa.repository.JpaRepository;
+import com.google.cloud.spring.data.firestore.FirestoreReactiveRepository;
+
 import org.springframework.stereotype.Repository;
+import reactor.core.publisher.Mono;
 
 import java.util.Optional;
 
 @Repository
-public interface CategoryRepo extends JpaRepository<CategoryModel, Integer> {
-    Optional<CategoryModel> findByName(String name);
+public interface CategoryRepo extends FirestoreReactiveRepository<CategoryModel> {
+    Mono<CategoryModel> findByName(String name);
 }

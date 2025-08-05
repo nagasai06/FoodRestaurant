@@ -7,13 +7,6 @@ public class CustOrdDto {
     private CustomerModel custModel;
     private OrderModel ordModel;
 
-//    public CustOrdDto() {
-//    }
-//
-//    public CustOrdDto(CustomerModel custModel, OrderModel ordModel) {
-//        this.custModel = custModel;
-//        this.ordModel = ordModel;
-//    }
 
     public CustomerModel getCustModel() {
         return custModel;

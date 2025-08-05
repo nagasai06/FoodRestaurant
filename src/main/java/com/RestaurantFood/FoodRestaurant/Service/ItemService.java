@@ -7,6 +7,7 @@ import com.RestaurantFood.FoodRestaurant.Repository.CategoryRepo;
 import com.RestaurantFood.FoodRestaurant.Repository.ItemRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Mono;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,15 +21,15 @@ public class ItemService {
     @Autowired
     CategoryRepo catRep;
 
-    public CategoryModel findOrCreate(String name){
-       return catRep.findByName(name).orElseGet(()->{
-            CategoryModel newCat = new CategoryModel();
-            newCat.setName(name);
-            return catRep.save(newCat);
-        });
+    public Mono<CategoryModel> findOrCreate(String name){
+       return catRep.findByName(name).switchIfEmpty(Mono.defer(()->{
+           CategoryModel newCat = new CategoryModel();
+           newCat.setName(name);
+           return catRep.save(newCat);
+       }));
     }
     public List<AddItemDto> getItems(){
-        List<ItemModel> items = repo.findAll();
+        List<ItemModel> items = (List<ItemModel>) repo.findAll();
         return items.stream().map(item -> new AddItemDto(
                 item.getName(),
                 item.getPrice(),
@@ -41,32 +42,35 @@ public class ItemService {
         for(AddItemDto i:it){
             ItemModel im = new ItemModel();
             String catName = i.getCategoryName();
-            im.setCategory(findOrCreate(catName));
+            System.out.println(catName);
+            im.setCategory(findOrCreate(catName).block());
+            System.out.println(i.getName());
             im.setName(i.getName());
             im.setPrice(i.getPrice());
-            repo.save(im);
+            System.out.println(i.getPrice());
+            repo.save(im).block();
         }
 
     }
 
     public void updateItem( AddItemDto it) {
-        ItemModel im = repo.findByName(it.getName()).orElse(null);
+        ItemModel im = repo.findByName(it.getName()).switchIfEmpty(Mono.error(new RuntimeException("Item odel not found"))).block();
         if(im!=null){
             String catName = it.getCategoryName();
-            im.setCategory(findOrCreate(catName));
+            im.setCategory(findOrCreate(catName).block());
             im.setName(it.getName());
             im.setPrice(it.getPrice());
 
-            repo.save(im);
+            repo.save(im).block();
         }
 
     }
 
-    public void deleteItem(int id) {
-        repo.deleteById(id);
+    public void deleteItem(String id) {
+        repo.deleteById(id).block();
     }
 
     public void delete() {
-        repo.deleteAll();
+        repo.deleteAll().block();
     }
 }
