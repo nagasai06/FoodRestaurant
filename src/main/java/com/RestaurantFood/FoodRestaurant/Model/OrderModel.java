@@ -1,35 +1,27 @@
 package com.RestaurantFood.FoodRestaurant.Model;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+import com.google.cloud.firestore.annotation.DocumentId;
+import com.google.cloud.spring.data.firestore.Document;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
-@Entity
+@Document
 public class OrderModel {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @DocumentId
+    private String id;
 
     private String name;
 
-    @NotBlank(message = "Phone num mandatory")
+
     private String phoneNumber;
 
 
-    @Enumerated(EnumType.STRING)
-    @NotNull(message = "Specify delivery type")
+
     private Priority priority;
 
-    //@OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
-    //private List<ItemModel  > items = new ArrayList<>();
 
-    @ElementCollection
-    @CollectionTable(name = "order_items", joinColumns = @JoinColumn(name = "order_id"))
-    @Column(name = "item_name")
     private List<String> itemNames;
 
     public List<String> getItemNames() {
@@ -40,17 +32,14 @@ public class OrderModel {
         this.itemNames = itemNames;
     }
 
-//    public void addItemr(ItemModel item){
-//        items.add(item);
-//        item.setOrder(this);
-//    }
+
 
     private double totalPrice;
 
     public OrderModel() {
     }
 
-    public OrderModel(int id, String name, String phoneNumber, Priority priority, double totalPrice, List<String> itemNames) {
+    public OrderModel(String id, String name, String phoneNumber, Priority priority, double totalPrice, List<String> itemNames) {
         this.id = id;
         this.name = name;
         this.phoneNumber = phoneNumber;
@@ -60,11 +49,11 @@ public class OrderModel {
         this.itemNames=itemNames;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -92,13 +81,7 @@ public class OrderModel {
         this.priority = priority;
     }
 
-//    public List<ItemModel> getItems() {
-//        return items;
-//    }
-//
-//    public void setItems(List<ItemModel> items) {
-//        this.items = items;
-//    }
+
 
     public double getTotalPrice() {
         return totalPrice;
