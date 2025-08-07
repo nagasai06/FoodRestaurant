@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from reposory -->
 	</parent>
 	<groupId>com.RestaurantFood</groupId>
-	<artifactId>FoodRestaurant</artifactId>
+	<artifactId>FoodRestaurant</artifactId> 
 	<version>0.0.1-SNAPSHOT</version>
 	<name>FoodRestaurant</namexgvdsb
 	<description>Demo project for Spdgbring Boot</description>
