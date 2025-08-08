@@ -29,11 +29,6 @@ public class ItemService {
        }));
     }
 
-//    Updated change from mono to list
-//    Test1
-//    tt
-    //tt
-    //hh
     public List<AddItemDto> getItems(){
         List<ItemModel> items = repo.findAll().collectList().block();
         return items.stream().map(item -> new AddItemDto(

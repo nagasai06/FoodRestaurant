@@ -16,7 +16,7 @@ public class ItemController {
 
     @Autowired
     ItemService service;
-    @GetMapping("/items")
+    @GetMapping("/")
     public ResponseEntity<List<AddItemDto>> getItems(){
 
         return new ResponseEntity<>(service.getItems(), HttpStatus.OK);
