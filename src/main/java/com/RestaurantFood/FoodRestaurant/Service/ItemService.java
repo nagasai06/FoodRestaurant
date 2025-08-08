@@ -29,7 +29,7 @@ public class ItemService {
        }));
     }
     public List<AddItemDto> getItems(){
-        List<ItemModel> items = (List<ItemModel>) repo.findAll();
+        List<ItemModel> items = repo.findAll().collectList().block();
         return items.stream().map(item -> new AddItemDto(
                 item.getName(),
                 item.getPrice(),
