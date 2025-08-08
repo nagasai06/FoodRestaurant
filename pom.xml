@@ -6,7 +6,7 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>    
 		<version>3.5.4</version>  
-		<relativePath/> <!-- lookup parent from reposory -->  
+		<relativePath/> <!-- lookup parent from reposory -->   
 	</parent>
 	<groupId>com.RestaurantFood</groupId> 
 	<artifactId>FoodRestaurant</artifactId>  
