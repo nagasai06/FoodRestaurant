@@ -28,6 +28,8 @@ public class ItemService {
            return catRep.save(newCat);
        }));
     }
+
+//    Updated change from mono to list
     public List<AddItemDto> getItems(){
         List<ItemModel> items = repo.findAll().collectList().block();
         return items.stream().map(item -> new AddItemDto(
