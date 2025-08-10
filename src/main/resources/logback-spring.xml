@@ -7,7 +7,7 @@
 
     <!-- Example: send logs to console and Pub/Sub -->
     <root level="INFO">
-        <appender-ref ref="CONSOLE"/>
+
         <appender-ref ref="PUBSUB"/>
     </root>
 
