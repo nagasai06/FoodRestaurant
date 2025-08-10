@@ -1,13 +1,18 @@
 <configuration>
 
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
     <appender name="PUBSUB" class="com.RestaurantFood.FoodRestaurant.PubSubAppender">
-        <projectId>	positive-water-468219-g2</projectId>
+        <projectId>positive-water-468219-g2</projectId>
         <topicId>FoodRestaurant-logs-topic</topicId>
     </appender>
 
-    <!-- Example: send logs to console and Pub/Sub -->
     <root level="INFO">
-
+        <appender-ref ref="CONSOLE"/>
         <appender-ref ref="PUBSUB"/>
     </root>
 
