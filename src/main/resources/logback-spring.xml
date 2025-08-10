@@ -1,6 +1,6 @@
 <configuration>
 
-    <appender name="PUBSUB" class="com.RestaurantFood.FoodRestaurant;">
+    <appender name="PUBSUB" class="com.RestaurantFood.FoodRestaurant.PubSubAppender">
         <projectId>	positive-water-468219-g2</projectId>
         <topicId>FoodRestaurant-logs-topic</topicId>
     </appender>
