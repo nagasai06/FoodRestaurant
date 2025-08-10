@@ -27,17 +27,19 @@ public class ItemController {
     public String checkCredentials() {
         try {
             GoogleCredentials credentials = GoogleCredentials.getApplicationDefault();
+            String info = "Credentials class: " + credentials.getClass().getName();
+
             if (credentials instanceof ServiceAccountCredentials) {
                 String email = ((ServiceAccountCredentials) credentials).getClientEmail();
-                return("Service Account Email: " + email);
-            } else {
-                return("Using credentials type: " + credentials.getClass().getName());
+                info += ", Service Account Email: " + email;
             }
-            //return "Using credentials: " + credentials.getClass().getName();
+
+            return info;
         } catch (Exception e) {
             return "Failed to get credentials: " + e.getMessage();
         }
     }
+
 
     @PostMapping("/addItems")
     public ResponseEntity<Void> addItems(@RequestBody List<AddItemDto> it){
