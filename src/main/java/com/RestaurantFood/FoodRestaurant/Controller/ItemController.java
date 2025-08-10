@@ -5,6 +5,7 @@ import com.RestaurantFood.FoodRestaurant.Dto.AddItemDto;
 import com.RestaurantFood.FoodRestaurant.Model.ItemModel;
 import com.RestaurantFood.FoodRestaurant.Service.ItemService;
 import com.google.auth.oauth2.GoogleCredentials;
+import com.google.auth.oauth2.ServiceAccountCredentials;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,7 +27,13 @@ public class ItemController {
     public String checkCredentials() {
         try {
             GoogleCredentials credentials = GoogleCredentials.getApplicationDefault();
-            return "Using credentials: " + credentials.getClass().getName();
+            if (credentials instanceof ServiceAccountCredentials) {
+                String email = ((ServiceAccountCredentials) credentials).getClientEmail();
+                return("Service Account Email: " + email);
+            } else {
+                return("Using credentials type: " + credentials.getClass().getName());
+            }
+            //return "Using credentials: " + credentials.getClass().getName();
         } catch (Exception e) {
             return "Failed to get credentials: " + e.getMessage();
         }
