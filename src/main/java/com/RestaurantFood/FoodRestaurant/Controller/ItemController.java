@@ -23,22 +23,22 @@ public class ItemController {
 
         return new ResponseEntity<>(service.getItems(), HttpStatus.OK);
     }
-    @GetMapping("/debug/credentials")
-    public String checkCredentials() {
-        try {
-            GoogleCredentials credentials = GoogleCredentials.getApplicationDefault();
-            String info = "Credentials class: " + credentials.getClass().getName();
-
-            if (credentials instanceof ServiceAccountCredentials) {
-                String email = ((ServiceAccountCredentials) credentials).getClientEmail();
-                info += ", Service Account Email: " + email;
-            }
-
-            return info;
-        } catch (Exception e) {
-            return "Failed to get credentials: " + e.getMessage();
-        }
-    }
+//    @GetMapping("/debug/credentials")
+//    public String checkCredentials() {
+//        try {
+//            GoogleCredentials credentials = GoogleCredentials.getApplicationDefault();
+//            String info = "Credentials class: " + credentials.getClass().getName();
+//
+//            if (credentials instanceof ServiceAccountCredentials) {
+//                String email = ((ServiceAccountCredentials) credentials).getClientEmail();
+//                info += ", Service Account Email: " + email;
+//            }
+//
+//            return info;
+//        } catch (Exception e) {
+//            return "Failed to get credentials: " + e.getMessage();
+//        }
+//    }
 
 
     @PostMapping("/addItems")
