@@ -1,0 +1,14 @@
+<configuration>
+
+    <appender name="PUBSUB" class="package com.RestaurantFood.FoodRestaurant;">
+        <projectId>	positive-water-468219-g2</projectId>
+        <topicId>FoodRestaurant-logs-topic</topicId>
+    </appender>
+
+    <!-- Example: send logs to console and Pub/Sub -->
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="PUBSUB"/>
+    </root>
+
+</configuration>

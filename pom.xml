@@ -79,6 +79,12 @@
 		</dependency>
 		<dependency>
 			<groupId>com.google.cloud</groupId>
+			<artifactId>google-cloud-pubsub</artifactId>
+			<version>1.118.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.google.cloud</groupId>
 			<artifactId>google-cloud-firestore</artifactId>
 			<version>3.32.0</version>
 		</dependency>
@@ -102,6 +108,7 @@
 	</dependencies>
 
 	<build>
+		<finalName>FoodRestaurant</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
