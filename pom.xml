@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<parent> 
+	<parent>
 		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>     
-		<version>3.5.4</version>   
-		<relativePath/> <!-- lookup parent from reposory -->       
-	</parent> 
-	<groupId>com.RestaurantFood</groupId>   
-	<artifactId>FoodRestaurant</artifactId>  
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>3.5.4</version>
+		<relativePath/> <!-- lookup parent from reposory -->
+	</parent>
+	<groupId>com.RestaurantFood</groupId>
+	<artifactId>FoodRestaurant</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>FoodRestaurant</name>
 	<description>Demo project for Spring Boot</description>
@@ -36,11 +36,11 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
-	<dependency>
-    	<groupId>org.projectlombok</groupId>
-    	<artifactId>lombok</artifactId>
-    	<version>1.18.38</version>
-	</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.38</version>
+		</dependency>
 
 		<dependency>
 			<groupId>org.postgresql</groupId>
@@ -77,10 +77,11 @@
 			<artifactId>spring-cloud-gcp-data-firestore</artifactId>
 			<version>7.0.0</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.google.cloud/google-cloud-pubsub -->
 		<dependency>
 			<groupId>com.google.cloud</groupId>
 			<artifactId>google-cloud-pubsub</artifactId>
-			<version>1.118.0</version>
+			<version>1.141.2</version>
 		</dependency>
 
 		<dependency>
