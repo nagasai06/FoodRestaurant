@@ -4,6 +4,7 @@ package com.RestaurantFood.FoodRestaurant.Controller;
 import com.RestaurantFood.FoodRestaurant.Dto.AddItemDto;
 import com.RestaurantFood.FoodRestaurant.Model.ItemModel;
 import com.RestaurantFood.FoodRestaurant.Service.ItemService;
+import com.google.auth.oauth2.GoogleCredentials;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +21,15 @@ public class ItemController {
     public ResponseEntity<List<AddItemDto>> getItems(){
 
         return new ResponseEntity<>(service.getItems(), HttpStatus.OK);
+    }
+    @GetMapping("/debug/credentials")
+    public String checkCredentials() {
+        try {
+            GoogleCredentials credentials = GoogleCredentials.getApplicationDefault();
+            return "Using credentials: " + credentials.getClass().getName();
+        } catch (Exception e) {
+            return "Failed to get credentials: " + e.getMessage();
+        }
     }
 
     @PostMapping("/addItems")
